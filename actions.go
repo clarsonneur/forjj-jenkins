@@ -24,7 +24,7 @@ func DoCreate(r *http.Request, req *CreateReq, ret *goforjj.PluginData) (httpCod
 		return
 	}
 
-	if p.create_jenkins_sources(ret) != nil {
+	if p.create_jenkins_sources(req.Forj.ForjjInstanceName, req.Objects.Features, ret) != nil {
 		return
 	}
 
@@ -71,7 +71,7 @@ func DoUpdate(r *http.Request, req *UpdateReq, ret *goforjj.PluginData) (_ int) 
 	if p.update_projects(req, ret, &updated) != nil {
 		return
 	}
-	if p.update_jenkins_sources(ret, &updated) != nil {
+	if p.update_jenkins_sources(req.Forj.ForjjInstanceName, req.Objects.Features, ret, &updated) != nil {
 		return
 	}
 

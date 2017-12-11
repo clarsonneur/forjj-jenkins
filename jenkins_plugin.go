@@ -37,6 +37,7 @@ type JenkinsPlugin struct {
 	InstanceName  string            // Instance name where files have to be generated.
 	template_dir  string
 	template_file string
+	features      map[string]FeaturesInstanceStruct
 	templates_def YamlTemplates // See templates.go. templates.yaml structure.
 	run           RunStruct
 	sources       map[string]TmplSource
