@@ -14,7 +14,7 @@ type DeployStruct struct {
 }
 
 type DockerfileStruct struct {
-	FromImage string `json:"dockerfile-from-image"` // Base Docker image tag name to use in Dockerfile. Must respect [server/repo/]name.
+	FromImage string `json:"dockerfile-from-image"` // Base Docker image tag name to use in Dockerfile(FROM). Must respect [[server/]repo/]name.
 	FromImageVersion string `json:"dockerfile-from-image-version"` // Base Docker image tag version to use in Dockerfile. By default, it uses 'latest'.
 	Maintainer string `json:"dockerfile-maintainer"` // Jenkins image maintainer
 }
@@ -68,6 +68,7 @@ type AppInstanceStruct struct {
 type FeaturesInstanceStruct struct {
 	Name string `json:"name"` // name of the jenkins feature
 	Options string `json:"options"` // List of feature option to use
+	Type string `json:"type"` // Type of feature. Can be plugin or feature. Default is feature.
 
 	Extent map[string]string `json:",omitempty"`
 }
@@ -228,7 +229,7 @@ const YamlDesc = "---\n" +
    "        flags:\n" +
    "          # Information we can define for the Dockerfile.\n" +
    "          from-image:\n" +
-   "            help: \"Base Docker image tag name to use in Dockerfile. Must respect [server/repo/]name.\"\n" +
+   "            help: \"Base Docker image tag name to use in Dockerfile(FROM). Must respect [[server/]repo/]name.\"\n" +
    "            default: forjdevops/jenkins\n" +
    "          from-image-version:\n" +
    "            help: \"Base Docker image tag version to use in Dockerfile. By default, it uses 'latest'.\"\n" +
@@ -307,6 +308,9 @@ const YamlDesc = "---\n" +
    "        required: true\n" +
    "      options:\n" +
    "        help: \"List of feature option to use\"\n" +
+   "      type:\n" +
+   "        help: \"Type of feature. Can be plugin or feature. Default is feature.\"\n" +
+   "        default: feature\n" +
    "  projects:\n" +
    "    default-actions: [\"add\", \"change\", \"remove\"]\n" +
    "    identified_by_flag: name\n" +
